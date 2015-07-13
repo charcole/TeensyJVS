@@ -6,21 +6,24 @@
 // 		Pin 2 TXenable
 // 		Pin 6 Sense output
 //		Pins 14-23 controller inputs
-// 	RX,TX,TXenable go to a MAX485 module
+// 	RX,TX,TXenable go to a RS485 module
+//  I had a 120 ohm resistor between A+B but I now believe that's already on the RS485 module
 // 	Sense output is the sense line to the JVS connector + top of 4 diodes to ground
 //
 // Schematic: 
-//                  GND-------------------------+
-//                   |                          |  |-----------------|
-// |-----------|     |    |---------------|     +--|GND		      14|---Switch---GND
-// |    GND   4|-----+----|GND         DI |--------|1              15|---Switch---GND
-// |    D+    3|----------|A           DE |---+----|2              16|---Switch---GND
-// |JVS D-    2|----------|B   MAX485 !RE |---+    |   Teensy3.1  ...|---Switch---GND
-// |    Sense 1|--+  5V-+-|VCC         R0 |--------|0              21|---Switch---GND
-// |-----------|  |     | |---------------|  +-----|Vin            22|---Switch---GND
-//                |     |                    |  +--|6              23|---Switch---GND
-//                |     +--------------------+  |  |-----------------|
-//                +-----------------------------+
+//                  GND------------------------+
+//                   |                         |  |-----------------|
+// |-----------|     |    |--------------|     +--|GND            14|---Switch---GND
+// |    GND   4|-----+----|GND         DI|--------|1              15|---Switch---GND
+// |    D+    3|----------|A           DE|---+----|2              16|---Switch---GND
+// |JVS        |          |    RS485     |   |    |     Teensy    17|---Switch---GND
+// |    D-    2|----------|B          !RE|---+    |      3.1     ...|---Switch---GND
+// |    Sense 1|--+     +-|VCC         R0|--------|0              21|---Switch---GND
+// |-----------|  |     | |--------------|  +-----|Vin            22|---Switch---GND
+//                |     |                   |  +--|6              23|---Switch---GND
+//                |  5V-+-------------------+  |  |-----------------|
+//                |                            |
+//                +----------------------------+
 //                | 
 //                +-----Diode---Diode---Diode---Diode---GND
 
